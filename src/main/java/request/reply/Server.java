@@ -45,7 +45,6 @@ public class Server {
 
     public void sendReply(byte[] reply) throws IOException, ClassNotFoundException {
         JSONObject replyJson = new JSONObject(new String(reply));
-        System.out.println(replyJson);
         //
         RemoteRef remoteRef = map.get(replyJson.getInt("requestId"));
         //
