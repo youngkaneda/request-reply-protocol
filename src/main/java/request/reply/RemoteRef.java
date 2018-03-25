@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author juan
  */
-public class RemoteRef implements Serializable{
+public class RemoteRef implements Serializable {
+
     private String host;
     private int port;
 
@@ -39,5 +40,5 @@ public class RemoteRef implements Serializable{
     @Override
     public String toString() {
         return "ObjectReference{" + "host=" + host + ", port=" + port + '}';
-    }    
+    }
 }

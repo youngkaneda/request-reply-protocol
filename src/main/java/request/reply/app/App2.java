@@ -28,7 +28,7 @@ public class App2 {
         //
         Message message = new Message(0, 12, 1, bff.array());
         //
-        byte[] response = cli.doOperation(ref, message);
+        byte[] response = cli.doOperation(ref, message, 1023);
         JSONObject object = new JSONObject(new String(response));
         Message resMessage = Marshaller.unMarshal(object);
         //

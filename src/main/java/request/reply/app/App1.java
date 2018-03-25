@@ -21,7 +21,7 @@ import request.reply.Server;
 public class App1 {
 
     public static void main(String[] args) throws IOException, SocketException, Base64DecodingException, ClassNotFoundException {
-        Server server = new Server();
+        Server server = new Server(1025);
         byte[] request = server.getRequest();
         byte[] response = process(request);
         server.sendReply(response);
@@ -51,7 +51,7 @@ public class App1 {
         //
         return resJson.toString().getBytes();
     }
-    
+
     public static int sum(int x, int y) {
         return Integer.sum(x, y);
     }

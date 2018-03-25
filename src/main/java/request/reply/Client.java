@@ -18,8 +18,8 @@ import org.json.JSONObject;
  */
 public class Client {
 
-    public byte[] doOperation(RemoteRef remoteRef, Message message) throws Base64DecodingException {
-        try(DatagramSocket client = new DatagramSocket(1024)){
+    public byte[] doOperation(RemoteRef remoteRef, Message message, int port) throws Base64DecodingException {
+        try(DatagramSocket client = new DatagramSocket(port)){
             JSONObject jsonMessage = Marshaller.marshal(message);
             //
             DatagramPacket pack = new DatagramPacket(jsonMessage.toString().getBytes(), jsonMessage.toString().getBytes().length, 

@@ -19,12 +19,12 @@ import org.json.JSONObject;
  * @author juan
  */
 public class Server {
-    
+
     private HashMap<Integer, RemoteRef> map;
     private DatagramSocket server;
 
-    public Server() throws SocketException {
-        server = new DatagramSocket(1025);
+    public Server(int port) throws SocketException {
+        server = new DatagramSocket(port);
         map = new HashMap();
     }
 
@@ -46,11 +46,18 @@ public class Server {
     public void sendReply(byte[] reply) throws IOException, ClassNotFoundException {
         JSONObject replyJson = new JSONObject(new String(reply));
         System.out.println(replyJson);
+        int requester = replyJson.getInt("requestId");
         //
-        RemoteRef remoteRef = map.get(replyJson.getInt("requestId"));
+        RemoteRef remoteRef = map.get(requester);
         //
         server.send(new DatagramPacket(replyJson.toString().getBytes(), replyJson.toString().getBytes().length,
                 InetAddress.getByName(remoteRef.getHost()), remoteRef.getPort()));
+        //
+        map.remove(requester);
+    }
+    
+    public RemoteRef getRequester(int id) {
+        return map.get(id);
     }
 
 }
